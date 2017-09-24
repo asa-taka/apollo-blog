@@ -7,7 +7,6 @@ import { withCustomProps } from './utils'
 export const Form = withCustomProps(props => ({
 
   // extract formData from original payload into new payload,
-  // and with omit-empty-field feature
   onSubmit: event => props.onSubmit(event.formData)
 
 }))(BaseForm)
