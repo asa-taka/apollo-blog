@@ -8,7 +8,7 @@ import { funcfy } from '../common/utils'
 
 const MUTATION = gql`
   mutation submit($input: DocumentInput!){
-    createDocument(input: $input) { id }
+    createDocument(input: $input) { id title body }
   }
 `
 const withMutation = graphql(MUTATION, {
