@@ -12,10 +12,13 @@ import AppHeader from './AppHeader'
 
 import schema from './schema'
 
+const networkInterfaces = {
+  real: createNetworkInterface({ uri: '/graphql' }),
+  mock: mockNetworkInterfaceWithSchema({ schema })
+}
+
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: '/graphql'
-  })
+  networkInterface: networkInterfaces['real']
 })
 
 class App extends Component {
