@@ -23,7 +23,10 @@ export const JSON_SCHEMA = {
 
 export const UI_SCHEMA = {
   body: {
-    'ui:widget': 'textarea'
+    'ui:widget': 'textarea',
+    'ui:options': {
+      rows: 15
+    }
   }
 }
 
