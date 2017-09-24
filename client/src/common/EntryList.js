@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
 const EntryList = props => {
-  const { fields, entries } = props
+  const { fields, entries, fieldProps } = props
   return (
     <Table>
       <thead>
@@ -16,7 +16,7 @@ const EntryList = props => {
           <tr key={i}>
             {fields.map(f => (
               <td key={f.name}>
-                {f.component ? <f.component entry={e}/> : f.value(e)}
+                {f.component ? <f.component entry={e} {...fieldProps}/> : f.value(e)}
               </td>
             ))}
           </tr>
