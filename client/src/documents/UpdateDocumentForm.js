@@ -1,8 +1,10 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import * as Document from './models/Document'
+import { funcfy } from '../common/utils'
 
 const MUTATION = gql`
   mutation submit($id: ID!, $input: DocumentInput!){
@@ -12,11 +14,15 @@ const MUTATION = gql`
 const withMutation = graphql(MUTATION, {
   props: ({ mutate, ownProps }) => ({
     onSubmit: input => {
-      mutate({ variables: { id: ownProps.id, input }})
-        .then(console.log)
+      const { id, history, routeOnSucceed } = ownProps
+      mutate({ variables: { id, input }})
+        .then(({ data }) => {
+          console.log(data)
+          if (routeOnSucceed) history.push(funcfy(routeOnSucceed)(id))
+        })
         .catch(console.error)
     }
   })
 })
 
-export default withMutation(Document.Form)
+export default withRouter(withMutation(Document.Form))

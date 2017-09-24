@@ -36,3 +36,10 @@ export const withCustomProps = customProps => {
     return props => <Component {...(customizeProps(props, customProps))}/>
   }
 }
+
+// functionize a value if neceessary
+// it's useful for a prop which accept a value or a function
+export const funcfy = value => {
+  if (value instanceof Function) return value
+  return () => value
+}

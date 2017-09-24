@@ -29,7 +29,7 @@ export default withRouter(({ match }) => {
       <Route exact path={rel`/new-doc`} component={({ match }) => (
         <div className="DocumentIndex">
           <PageHeader>New Document</PageHeader>
-          <CreateDocumentForm>
+          <CreateDocumentForm routeOnSucceed={id => rel(id)}>
             <ButtonToolbar>
               <LinkButton to={rel`/`}>Cancel</LinkButton>
               <Button type="submit" bsStyle="primary">Submit</Button>

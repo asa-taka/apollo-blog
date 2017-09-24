@@ -32,7 +32,8 @@ const SingleDocument = withRouter(({ match, id, data }) => {
 
       <Route exact path={rel`/edit`} component={({ match }) => (
         <div className="DocumentEdit">
-          <UpdateDocumentForm id={id} formData={Document.typeToInput(doc)}>
+          <UpdateDocumentForm id={id} formData={Document.typeToInput(doc)}
+            routeOnSucceed={rel``}>
             <ButtonToolbar>
               <LinkButton to={rel`/`}>Cancel</LinkButton>
               <Button type="submit" bsStyle="primary">Submit</Button>
