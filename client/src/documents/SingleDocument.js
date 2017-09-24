@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, gql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ButtonToolbar, Button } from 'react-bootstrap'
 
@@ -12,6 +12,8 @@ import DeleteDocumentButton from './DeleteDocumentButton'
 
 import * as Document from './models/Document'
 import * as urlJoin from 'url-join'
+
+import { DocumentQuery } from './queries'
 
 const SingleDocument = withRouter(({ match, id, data }) => {
   const doc = data.document
@@ -45,12 +47,7 @@ const SingleDocument = withRouter(({ match, id, data }) => {
   )
 })
 
-const QUERY = gql`
-  query SingleDocument($id: ID!) {
-    document(id: $id) { id title body }
-  }
-`
-const withQuery = graphql(QUERY, {
+const withQuery = graphql(DocumentQuery, {
   options: ({ id }) => ({ variables: { id }})
 })
 

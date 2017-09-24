@@ -1,14 +1,20 @@
 import React from 'react'
-import { graphql, gql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
+
+import { DocumentsQuery, DeleteDocumentMutation } from './queries'
 
 const DeleteDocumentButton = withRouter(props => {
   const { id, history } = props
   const submit = async () => {
     if (!window.confirm('Are you sure to delete?')) return
-    const res = await props.mutate({ variables: { id }}).catch(console.error)
+    const options = {
+      variables: { id },
+      refetchQueries: [{ query: DocumentsQuery }]
+    }
+    const res = await props.mutate(options).catch(console.error)
     console.log(res)
     if (props.routeOnSucceed) history.push(props.routeOnSucceed)
   }
@@ -19,13 +25,6 @@ DeleteDocumentButton.propTypes = {
   routeOnSucceed: PropTypes.string
 }
 
-const MUTATION = gql`
-  mutation DeleteDocument($id: ID!) {
-    deleteDocument(id: $id) {
-      id title body
-    }
-  }
-`
-const withMutation = graphql(MUTATION)
+const withMutation = graphql(DeleteDocumentMutation)
 
 export default withMutation(DeleteDocumentButton)
