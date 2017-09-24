@@ -10,7 +10,7 @@ export default props => (
       <div>Root</div>
     )}/>
 
-    <Route path="/docs" component={({ match }) => (
+    <Route path="/docs/" component={({ match }) => (
       <DocumentIndex/>
     )}/>
 

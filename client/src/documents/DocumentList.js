@@ -6,12 +6,10 @@ import EntryList from '../common/EntryList'
 import { withQuery, decorate } from '../common/utils'
 
 import * as moment from 'moment'
+import * as urlJoin from 'url-join'
 
-const TitleField = withRouter(({ entry, match }) => {
-  const to = `${match.url}/${entry.id}`
-  return (
-    <Link to={to}>{entry.title}</Link>
-  )
+const TitleField = withRouter(({ entry, match, linkTo }) => {
+  return <Link to={linkTo(entry.id)}>{entry.title}</Link>
 })
 
 const DATETIME_FORMAT = 'YYYY-MM-DD hh:mm'
@@ -22,11 +20,14 @@ const fields = [
   { name: 'body', value: e => e.body },
 ]
 
-const DocumentList = props => {
-  const docs = props.data.documents
-  return (
-    <EntryList entries={docs} fields={fields} entryKey={e => e.id}/>
-  )
+const DocumentList = ({ data, linkTo }) => {
+  const listProps = {
+    entries: data.documents,
+    fields,
+    entryKey: e => e.id,
+    fieldProps: { linkTo }
+  }
+  return <EntryList {...listProps}/>
 }
 
 const QUERY = gql`

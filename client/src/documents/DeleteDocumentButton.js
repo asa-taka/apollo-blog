@@ -11,7 +11,7 @@ const DeleteDocumentButton = withRouter(props => {
     props.mutate({ variables: { id }})
       .then(res => {
         console.log(res)
-        if (props.onSucceedRoute) history.push(props.onSucceedRoute)
+        if (props.routeOnSucceed) history.push(props.routeOnSucceed)
       })
       .catch(console.error)
   }
@@ -21,7 +21,7 @@ const DeleteDocumentButton = withRouter(props => {
 })
 
 DeleteDocumentButton.propTypes = {
-  onSucceedRoute: PropTypes.string
+  routeOnSucceed: PropTypes.string
 }
 
 const MUTATION = gql`

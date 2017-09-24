@@ -11,7 +11,7 @@ export default props => {
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <LinkContainer to="/docs">
+        <LinkContainer to="/docs/">
           <NavItem eventKey={1} href="#">Documents</NavItem>
         </LinkContainer>
         <NavItem eventKey={2} href="#">Link</NavItem>
