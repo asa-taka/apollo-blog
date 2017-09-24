@@ -3,10 +3,10 @@ import { gql } from 'react-apollo'
 import { PageHeader } from 'react-bootstrap'
 
 const DocumentView = props => {
-  const doc = props.doc
+  const { title, body } = props
   return <div className="DocumentView">
-    <PageHeader>{doc.title}</PageHeader>
-    <div>{doc.body}</div>
+    <PageHeader>{title}</PageHeader>
+    <div>{body}</div>
   </div>
 }
 
