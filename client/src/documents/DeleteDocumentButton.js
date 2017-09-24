@@ -7,16 +7,16 @@ import { Button } from 'react-bootstrap'
 import { DocumentsQuery, DeleteDocumentMutation } from './queries'
 
 const DeleteDocumentButton = withRouter(props => {
-  const { id, history } = props
+  const { mutate, id, history, routeOnSucceed } = props
   const submit = async () => {
     if (!window.confirm('Are you sure to delete?')) return
     const options = {
       variables: { id },
       refetchQueries: [{ query: DocumentsQuery }]
     }
-    const res = await props.mutate(options).catch(console.error)
+    const res = await mutate(options).catch(console.error)
     console.log(res)
-    if (props.routeOnSucceed) history.push(props.routeOnSucceed)
+    if (routeOnSucceed) history.push(routeOnSucceed)
   }
   return <Button onClick={submit}>{props.children}</Button>
 })

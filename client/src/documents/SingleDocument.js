@@ -11,7 +11,7 @@ import UpdateDocumentForm from './UpdateDocumentForm'
 import DeleteDocumentButton from './DeleteDocumentButton'
 
 import * as Document from './models/Document'
-import * as urlJoin from 'url-join'
+import * as urlJoin from 'urljoin'
 
 import { DocumentQuery } from './queries'
 

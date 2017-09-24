@@ -8,7 +8,7 @@ import DocumentList from './DocumentList'
 import CreateDocumentForm from './CreateDocumentForm'
 import SingleDocument from './SingleDocument'
 
-import * as urlJoin from 'url-join'
+import * as urlJoin from 'urljoin'
 
 export default withRouter(({ match }) => {
 
