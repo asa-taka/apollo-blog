@@ -6,18 +6,13 @@ import { Button } from 'react-bootstrap'
 
 const DeleteDocumentButton = withRouter(props => {
   const { id, history } = props
-  const submit = () => {
+  const submit = async () => {
     if (!window.confirm('Are you sure to delete?')) return
-    props.mutate({ variables: { id }})
-      .then(res => {
-        console.log(res)
-        if (props.routeOnSucceed) history.push(props.routeOnSucceed)
-      })
-      .catch(console.error)
+    const res = await props.mutate({ variables: { id }}).catch(console.error)
+    console.log(res)
+    if (props.routeOnSucceed) history.push(props.routeOnSucceed)
   }
-  return (
-    <Button onClick={submit}>{props.children}</Button>
-  )
+  return <Button onClick={submit}>{props.children}</Button>
 })
 
 DeleteDocumentButton.propTypes = {

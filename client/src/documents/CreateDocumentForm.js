@@ -13,15 +13,12 @@ const MUTATION = gql`
 `
 const withMutation = graphql(MUTATION, {
   props: ({ mutate, ownProps }) => ({
-    onSubmit: input => {
-      mutate({ variables: { input }})
-        .then(({ data }) => {
-          console.log(data)
-          const id = data.createDocument.id
-          const { routeOnSucceed, history } = ownProps
-          if (routeOnSucceed) history.push(funcfy(routeOnSucceed)(id))
-        })
-        .catch(console.error)
+    onSubmit: async input => {
+      const { data } = await mutate({ variables: { input }}).catch(console.error)
+      console.log(data)
+      const id = data.createDocument.id
+      const { routeOnSucceed, history } = ownProps
+      if (routeOnSucceed) history.push(funcfy(routeOnSucceed)(id))
     }
   })
 })
