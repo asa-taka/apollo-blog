@@ -30,12 +30,15 @@ let documents = [
   { id: 1, title: 'document B', body: 'some-contents' },
 ]
 
+// fuzzy compare because it's tedious to consider string/number ID type
+const getDocument = id => documents.find(e => e.id == id)
+
 const rootValue = {
 
   // Query
 
   document: ({ id }) => {
-    return documents.find(e => e.id == id)
+    return getDocument(id)
   },
   documents: () => {
     return documents
@@ -50,13 +53,13 @@ const rootValue = {
     return doc
   },
   updateDocument: ({ id, input }) => {
-    const doc = resolvers.Query.getDocument({ id })
+    const doc = getDocument(id)
     Object.assign(doc, input)
     return doc
   },
   deleteDocument: ({ id }) => {
-    const doc = resolvers.Query.getDocument({ id })
-    documents = documents.filter(e => e.id !== id)
+    const doc = getDocument(id)
+    documents = documents.filter(e => e.id != id)
     return doc
   }
 }
