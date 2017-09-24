@@ -2,10 +2,9 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
 import EntryList from '../common/EntryList'
-import { withQuery, decorate } from '../common/utils'
+import { withQuery } from '../common/utils'
 
 import * as moment from 'moment'
-import * as urlJoin from 'url-join'
 
 import { DocumentsQuery } from './queries'
 

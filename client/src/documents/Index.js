@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import { PageHeader, ButtonToolbar, Button } from 'react-bootstrap'
 
 import { LinkButton } from '../common/bootstrap'

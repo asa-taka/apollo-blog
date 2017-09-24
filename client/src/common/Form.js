@@ -1,5 +1,3 @@
-import React from 'react'
-import { graphql } from 'react-apollo'
 import BaseForm from 'react-jsonschema-form'
 import { withCustomProps } from './utils'
 
