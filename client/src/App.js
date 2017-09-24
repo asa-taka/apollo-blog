@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { routes } from './routes'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './AppRoutes'
 
 import { ApolloClient } from 'apollo-client'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider, createNetworkInterface } from 'react-apollo'
 import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils'
 
 import AppHeader from './AppHeader'
 
 import schema from './schema'
 
+const networkInterfaces = {
+  real: createNetworkInterface({ uri: '/graphql' }),
+  mock: mockNetworkInterfaceWithSchema({ schema })
+}
+
 const client = new ApolloClient({
-  networkInterface: mockNetworkInterfaceWithSchema({ schema })
+  networkInterface: networkInterfaces['real']
 })
 
 class App extends Component {
   render() {
     return (
       <div>
-        <AppHeader/>
-        <ApolloProvider client={client}>
-          <BrowserRouter>
-            <div className="container">
-              <Switch>
-                {routes.map(route => (
-                  <Route
-                    key={route.path}
-                    exact path={route.path}
-                    component={route.component}
-                  />
-                ))}
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </ApolloProvider>
+        <BrowserRouter>
+          <div>
+            <AppHeader/>
+            <ApolloProvider client={client}>
+              <div className="container">
+                <AppRoutes/>
+              </div>
+            </ApolloProvider>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
