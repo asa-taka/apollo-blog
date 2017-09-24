@@ -2,6 +2,7 @@ import * as Base from '../../common/Form'
 import { withCustomProps } from '../../common/utils'
 
 export const typeToInput = data => {
+  if (!data) return
   return {
     title: data.title,
     body: data.body,
