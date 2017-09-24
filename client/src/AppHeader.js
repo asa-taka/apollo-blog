@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 export default props => {
   return (
@@ -10,7 +11,9 @@ export default props => {
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <NavItem eventKey={1} href="#">Link</NavItem>
+        <LinkContainer to="/docs">
+          <NavItem eventKey={1} href="#">Documents</NavItem>
+        </LinkContainer>
         <NavItem eventKey={2} href="#">Link</NavItem>
         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
